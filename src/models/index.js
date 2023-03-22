@@ -1,5 +1,5 @@
 const productModel = require('./product.model');
 
-module.exports({
+module.exports = {
   productModel,
-});
+};
