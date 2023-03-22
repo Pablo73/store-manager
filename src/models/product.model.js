@@ -15,7 +15,24 @@ const productById = async (id) => {
   return result;
 };
 
+const productInsert = async (value) => {
+  const placeholders = Object.keys(value)
+  .map((_key) => '?')
+  .join(', ');
+  
+  await connection.execute(
+    `INSERT INTO products (name) VALUE (${placeholders})`,
+    [...Object.values(value)],
+  );
+  const [[result]] = await connection.execute(
+    'SELECT * FROM products WHERE name = ?',
+    [value.name],
+ );
+  return result;
+};
+
 module.exports = {
   allProduct,
   productById,
+  productInsert,
 };
