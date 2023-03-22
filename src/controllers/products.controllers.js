@@ -21,6 +21,14 @@ const getProductsById = async (req, res) => {
 const insertProducts = async (req, res) => {
   const { body } = req;
   const product = await productsServices.productInsert(body);
+
+  if (product.message && product.message.includes('required')) {
+    return res.status(400).json(product);
+  }
+  if (product.message && product.message.includes('length')) {
+    return res.status(422).json(product);
+  }
+
   return res.status(201).json(product);
 };
 
