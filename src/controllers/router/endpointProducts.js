@@ -5,11 +5,13 @@ const {
   insertProducts,
 } = require('../products.controllers');
 
+const { validatesProductExists } = require('../../middlewares/validation');
+
 const router = express.Router();
 
 router.get('/', getAllProducts);
 
-router.get('/:id', getProductsById);
+router.get('/:id', validatesProductExists, getProductsById);
 
 router.post('/', insertProducts);
 

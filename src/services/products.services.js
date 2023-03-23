@@ -1,4 +1,4 @@
-const productModel = require('../models/product.model');
+const { productModel } = require('../models');
 const { nameSchema } = require('./validations/schemas');
 
 const allProducts = async () => {
@@ -16,7 +16,6 @@ const productInsert = async (value) => {
   if (error) {
     return { message: error.message };
   }
-
   const product = await productModel.productInsert(value);
   return product;
 };
