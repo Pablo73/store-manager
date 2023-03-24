@@ -5,13 +5,16 @@ const salesInsert = async (value) => {
     'INSERT INTO sales () VALUE ()',
   );
 
-  const map = value.map(async (ele) => {
+  const insertNewSales = value.map(async (ele) => {
     const query = 'INSERT INTO sales_products (sale_id, product_id, quantity) VALUE (?, ?, ?)';
     await connection.execute(query, [insertId, ele.productId, ele.quantity]);
     return ele;
   });
 
-  return Promise.all(map).then((values) => ({ id: insertId, itemsSold: values }));
+  return Promise.all(insertNewSales).then((values) => ({
+    id: insertId,
+    itemsSold: values,
+  }));
 };
 
 const allSale = async () => {

@@ -6,7 +6,7 @@ const { productsServices } = require('../../../src/services');
 const { products } = require('./mocks.services/mocks.products.mocks');
 
 
-describe("Testes da camada services store manager", function () {
+describe("Testes da camada services end point products", function () {
   afterEach(sinon.restore);
 
   it("Verifica se a função allProduct foi chamada", async function () {

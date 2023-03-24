@@ -5,7 +5,7 @@ const { productModel } = require('../../../src/models');
 const { products } = require("./mocks.models/products.model");
 const connection = require('../../../src/models/connection');
 
-describe("Testes da camada model store manager", function () {
+describe("Testes da camada model end point products", function () {
   afterEach(sinon.restore);
 
   it("Listar todos os produtos", async function () {
