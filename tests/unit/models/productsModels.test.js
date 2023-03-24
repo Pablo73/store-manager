@@ -23,4 +23,16 @@ describe("Testes da camada model store manager", function () {
 
     expect(result).to.be.deep.equal(products[0]);
   });
+
+  it("Insert new product", async function () {
+    sinon.stub(connection, "execute").resolves([{ insertId: 4 }]);
+
+    const result = await productModel.productInsert({ name: "ProdutoX" });
+
+    expect(result).to.be.deep.equal(
+    {
+      id: 4,
+      name: "ProdutoX",
+    });
+  });
 });

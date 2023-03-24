@@ -23,13 +23,18 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3001/products/1",
-    "url": "http://localhost:3001/products/4",
+    "url": "http://localhost:3001/products",
     "method": "GET",
     "sortNum": 0,
     "created": "2023-03-21T20:04:36.833Z",
-    "modified": "2023-03-21T21:41:02.589Z",
+    "modified": "2023-03-24T10:06:53.231Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"pablo\": \"Produto9\"\n}",
+      "form": []
+    },
     "tests": []
   },
   {

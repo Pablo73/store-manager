@@ -17,18 +17,16 @@ const productById = async (id) => {
 
 const productInsert = async (value) => {
   const placeholders = Object.keys(value)
-  .map((_key) => '?')
-  .join(', ');
-  
-  await connection.execute(
+    .map((_key) => '?')
+    .join(', ');
+
+  const [{ insertId }] = await connection.execute(
     `INSERT INTO products (name) VALUE (${placeholders})`,
     [...Object.values(value)],
   );
-  const [[result]] = await connection.execute(
-    'SELECT * FROM products WHERE name = ?',
-    [value.name],
- );
-  return result;
+
+  const newInsert = { id: insertId, name: value.name };
+  return newInsert;
 };
 
 module.exports = {
