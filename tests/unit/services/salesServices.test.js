@@ -34,7 +34,6 @@ describe("Testes da camada services end point sales", function () {
      sinon.stub(salesModel, "allSale").resolves(sales);
 
      const result = await salesServices.salesId(123123);
-
      expect(result).to.deep.equal(null);
    });
 
