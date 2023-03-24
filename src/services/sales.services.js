@@ -17,6 +17,25 @@ const salesInsert = async (value) => {
   return sales;
 };
 
+const allSales = async () => {
+  const sales = await salesModel.allSale();
+  return sales;
+};
+
+const salesId = async (id) => {
+  const sales = await salesModel.allSale();
+  const validIdSales = sales.some((ele) => ele.saleId === +id);
+  console.log(validIdSales);
+
+  if (validIdSales) {
+    const salesIds = await salesModel.getSalesId(id);
+    return salesIds;
+  } 
+    return null;
+};
+
 module.exports = {
   salesInsert,
+  allSales,
+  salesId,
 };

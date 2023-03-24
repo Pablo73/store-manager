@@ -1,5 +1,9 @@
 const express = require('express');
-const { putSales } = require('../sales.controllers');
+const {
+  putSales,
+  allSalesControllers,
+  allSalesControllersId,
+} = require('../sales.controllers');
 
 const {
   quantitySales,
@@ -8,9 +12,8 @@ const {
 
 const router = express.Router();
 
-router.post('/',
-  productIdSales,
-  quantitySales,
-  putSales);
+router.post('/', productIdSales, quantitySales, putSales);
+router.get('/', allSalesControllers);
+router.get('/:id', allSalesControllersId);
 
 module.exports = router;
