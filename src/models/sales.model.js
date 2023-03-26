@@ -33,8 +33,13 @@ const getSalesId = async (id) => {
   return result;
 };
 
+const deleteSales = async (id) => {
+  await connection.execute('DELETE FROM sales_products WHERE sale_id = ?', [id]);
+};
+
 module.exports = {
   salesInsert,
   allSale,
   getSalesId,
+  deleteSales,
 };

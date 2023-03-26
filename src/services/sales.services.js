@@ -25,7 +25,6 @@ const allSales = async () => {
 const salesId = async (id) => {
   const sales = await salesModel.allSale();
   const validIdSales = sales.some((ele) => ele.saleId === +id);
-  console.log(validIdSales);
 
   if (validIdSales) {
     const salesIds = await salesModel.getSalesId(id);
@@ -34,8 +33,14 @@ const salesId = async (id) => {
     return null;
 };
 
+const deleteSalesId = async (id) => {
+  const productId = await salesModel.deleteSales(id);
+  return productId;
+};
+
 module.exports = {
   salesInsert,
   allSales,
   salesId,
+  deleteSalesId,
 };

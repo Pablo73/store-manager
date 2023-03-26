@@ -1,4 +1,4 @@
-const { productsServices } = require('../services');
+const { productsServices, salesServices } = require('../services');
 
 const validatesProductExists = async (req, res, next) => {
   const product = await productsServices.allProducts();
@@ -6,6 +6,16 @@ const validatesProductExists = async (req, res, next) => {
   const thereProduct = product.some((ele) => +ele.id === +id);
   if (!thereProduct) {
    return res.status(404).json({ message: 'Product not found' });
+  }
+  return next();
+};
+
+const validatesSalesExists = async (req, res, next) => {
+  const sales = await salesServices.allSales();
+  const { id } = req.params;
+  const thereSales = sales.some((ele) => +ele.saleId === +id);
+  if (!thereSales) {
+    return res.status(404).json({ message: 'Sale not found' });
   }
   return next();
 };
@@ -56,4 +66,5 @@ module.exports = {
   productIdSales,
   quantitySales,
   updateProducts,
+  validatesSalesExists,
 };
