@@ -8,6 +8,7 @@ const salesInsert = async (value) => {
 
     const thereProduct = productExist.map((ele) =>
       product.some((sales) => +ele === +sales.id));
+  
     const valeuTrue = thereProduct.every((ele) => ele);
 
     if (!valeuTrue) {
@@ -38,9 +39,28 @@ const deleteSalesId = async (id) => {
   return productId;
 };
 
+const updateSalesId = async (id, body) => {
+  const product = await productModel.allProduct();
+  
+  const productExist = body.map((ele) => ele.productId);
+  
+  const thereProduct = productExist.map((ele) =>
+  product.some((sales) => +ele === +sales.id));
+  
+  const valeuTrue = thereProduct.every((ele) => ele);
+  
+  if (!valeuTrue) {
+    return null;
+  }
+  const productId = await salesModel.updateSalesById(id, body);
+  
+  return productId;
+};
+
 module.exports = {
   salesInsert,
   allSales,
   salesId,
   deleteSalesId,
+  updateSalesId,
 };

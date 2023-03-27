@@ -60,11 +60,12 @@ const updateProducts = async (req, res, next) => {
   }
   return next();
 };
-  
+
 module.exports = {
   validatesProductExists,
   productIdSales,
   quantitySales,
   updateProducts,
-  validatesSalesExists,
+    validatesSalesExists,
+ 
 };

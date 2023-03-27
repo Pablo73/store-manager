@@ -4,6 +4,7 @@ const {
   allSalesControllers,
   allSalesControllersId,
   deleteSales,
+  updateSalesById,
 } = require('../sales.controllers');
 
 const {
@@ -21,5 +22,7 @@ router.get('/', allSalesControllers);
 router.get('/:id', allSalesControllersId);
 
 router.delete('/:id', validatesSalesExists, deleteSales);
+
+router.put('/:id', validatesSalesExists, productIdSales, quantitySales, updateSalesById);
 
 module.exports = router;
