@@ -12,7 +12,11 @@ chai.use(chaiHttp);
 
 const { productsServices } = require("../../../src/services");
 const { productControllers } = require("../../../src/controllers");
-const { products, message } = require("./mocks.controllers/mocks.controllers");
+const {
+  products,
+  message,
+  searchProduct,
+} = require("./mocks.controllers/mocks.controllers");
 const app = require('../../../src/app');
 const { validatesProductExists } = require("../../../src/middlewares/validation");
 
@@ -205,6 +209,24 @@ describe("Testa da camada controllers Products", function () {
      expect(res.status).to.have.been.calledWith(204);
    
    });
+  it("queryProduct retorna status 200", async function () {
+    sinon.stub(productsServices, "searchProduct").resolves(searchProduct);
+
+    const res = {};
+    const req = {
+      params: {},
+      body: {},
+      query: {q: 'Martelo'},
+    };
+
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+
+    await productControllers.queryProduct(req, res);
+
+    expect(res.status).to.have.been.calledWith(200);
+    expect(res.json).to.have.been.calledWith(searchProduct);
+  });
 });
 
 describe("Testa as rotas controllers store", function () { 

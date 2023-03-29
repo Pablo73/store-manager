@@ -52,4 +52,12 @@ describe("Testes da camada model end point products", function () {
       expect(result).to.be.deep.equal(undefined);
   
     });
+  
+   it("Delete product", async function () {
+     sinon.stub(connection, "execute").resolves([updateProducts]);
+
+     const result = await productModel.getQueryProduct('Martelo');
+
+     expect(result).to.be.deep.equal(updateProducts);
+   });
 });

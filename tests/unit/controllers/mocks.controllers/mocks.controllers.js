@@ -66,6 +66,14 @@ const updateSales = [
   },
 ];
 
+const searchProduct =
+  [
+    {
+      id: 1,
+      name: "Martelo de Thor",
+    },
+  ];
+
 module.exports = {
   products,
   message,
@@ -73,4 +81,5 @@ module.exports = {
   bodyNewSales,
   allSales,
   updateSales,
+  searchProduct,
 };

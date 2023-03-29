@@ -22,8 +22,16 @@ const updatePraduct = {
   name: "Martelo do Batman",
 };
 
+const searchProduct = [
+  {
+    id: 1,
+    name: "Martelo de Thor",
+  },
+];
+
 module.export = {
   products,
   productId,
   updatePraduct,
+  searchProduct,
 };

@@ -7,6 +7,7 @@ const {
   products,
   productId,
   updatePraduct,
+  searchProduct,
 } = require("./mocks.services/mocks.products.mocks");
 
 
@@ -72,4 +73,12 @@ describe("Testes da camada services end point products", function () {
 
     expect(result).to.deep.equal(null);
   });
+
+    it("Verifica se a função searchProduct foi chamada", async function () {
+      sinon.stub(productModel, "getQueryProduct").resolves(searchProduct);
+
+      const result = await productsServices.searchProduct('Martelo');
+
+      expect(result).to.deep.equal(searchProduct);
+    });
 });
