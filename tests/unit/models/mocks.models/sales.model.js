@@ -19,33 +19,50 @@ const sales = [
   },
 ];
 
-const bodyNewSales = [
-  {
-    productId: 3,
-    quantity: 8,
-  },
-  {
-    productId: 4,
-    quantity: 8,
-  },
-];
 
 const newSales = {
   "id": 4,
   "itemsSold": [
     {
-      "productId": 3,
-      "quantity": 2
+      "productId": 1,
+      "quantity": 1
     },
     {
-      "productId": 3,
-      "quantity": 1
+      "productId": 2,
+      "quantity": 5
     }
   ]
 }
 
+const insertSales = [
+  {
+    productId: 1,
+    quantity: 1,
+  },
+  {
+    productId: 2,
+    quantity: 5,
+  },
+];
+
+const updateNewSales = 
+  {
+    "saleId": 1,
+    "itemsUpdated": [
+      {
+        "productId": 1,
+        "quantity": 1
+      },
+      {
+        "productId": 2,
+        "quantity": 5
+      }
+    ]
+  };
+
 module.exports = {
   sales,
   newSales,
-  bodyNewSales,
+  insertSales,
+  updateNewSales,
 };

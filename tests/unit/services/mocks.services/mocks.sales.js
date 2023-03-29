@@ -35,11 +35,11 @@ const resultGetId = [
 const bodyNewSales = [
   {
     productId: 45454545,
-    quantity: 25454545454,
+    quantity: 2,
   },
   {
     productId: 35454545454,
-    quantity: 145454545454,
+    quantity: 1,
   },
 ];
 
@@ -57,10 +57,38 @@ const newSales = {
   ],
 };
 
+const updateSales = [
+  {
+    productId: 1,
+    quantity: 10,
+  },
+  {
+    productId: 2,
+    quantity: 50,
+  },
+];
+
+
+const products = [
+  {
+    id: 1,
+    name: "Martelo de Thor",
+  },
+  {
+    id: 2,
+    name: "Traje de encolhimento",
+  },
+  {
+    id: 3,
+    name: "Escudo do Capitão América",
+  },
+];
 
 module.exports = {
   sales,
   resultGetId,
   bodyNewSales,
   newSales,
+  updateSales,
+  products,
 };

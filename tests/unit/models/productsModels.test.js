@@ -2,7 +2,7 @@ const { expect } = require("chai");
 const sinon = require("sinon");
 
 const { productModel } = require('../../../src/models');
-const { products } = require("./mocks.models/products.model");
+const { products, updateProducts } = require("./mocks.models/products.model");
 const connection = require('../../../src/models/connection');
 
 describe("Testes da camada model end point products", function () {
@@ -35,4 +35,21 @@ describe("Testes da camada model end point products", function () {
       name: "ProdutoX",
     });
   });
+
+   it("Update product", async function () {
+     sinon.stub(connection, "execute").resolves([updateProducts]);
+
+     const result = await productModel.updateProduct(1, { name: "Martelo do Batman" });
+
+     expect(result).to.be.deep.equal({ id: 1, name: "Martelo do Batman" });
+   });
+  
+    it("Delete product", async function () {
+      sinon.stub(connection, "execute").resolves([products]);
+
+      const result = await productModel.deleteProduct(4);
+
+      expect(result).to.be.deep.equal(undefined);
+  
+    });
 });

@@ -3,7 +3,11 @@ const sinon = require("sinon");
 
 const { productModel } = require('../../../src/models');
 const { productsServices } = require('../../../src/services');
-const { products } = require('./mocks.services/mocks.products.mocks');
+const {
+  products,
+  productId,
+  updatePraduct,
+} = require("./mocks.services/mocks.products.mocks");
 
 
 describe("Testes da camada services end point products", function () {
@@ -51,5 +55,21 @@ describe("Testes da camada services end point products", function () {
       id: 4,
       name: "ProdutoX",
     });
+  });
+
+  it("Verifica se a função updateProductsId foi chamada", async function () {
+    sinon.stub(productModel, "updateProduct").resolves(productId);
+
+    const result = await productsServices.updateProductsId(1, updatePraduct);
+
+    expect(result).to.deep.equal(productId);
+  });
+
+  it("Verifica se a função deleteProductId foi chamada", async function () {
+    sinon.stub(productModel, "deleteProduct").resolves(null);
+
+    const result = await productsServices.deleteProductId(1, updatePraduct);
+
+    expect(result).to.deep.equal(null);
   });
 });

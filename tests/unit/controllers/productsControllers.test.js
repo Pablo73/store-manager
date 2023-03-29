@@ -16,7 +16,7 @@ const { products, message } = require("./mocks.controllers/mocks.controllers");
 const app = require('../../../src/app');
 const { validatesProductExists } = require("../../../src/middlewares/validation");
 
-describe("Testa da camada controllers store", function () {
+describe("Testa da camada controllers Products", function () {
 
   afterEach(sinon.restore);
 
@@ -35,6 +35,11 @@ describe("Testa da camada controllers store", function () {
 
 
     await productControllers.getAllProducts(req, res);
+
+
+    const responseGet = await chai.request(app).get("/products");
+
+    expect(responseGet.status).to.be.equal(200);
     
     expect(res.status).to.have.been.calledWith(200);
     expect(res.json).to.have.been.calledWith(products);
@@ -67,6 +72,8 @@ describe("Testa da camada controllers store", function () {
 
 
   it("getById retorna status 404", async function () {
+    sinon.stub(productsServices, "allProducts").resolves(products);
+    
     const res = {};
     const req = {
       params: { id: 654454 },
@@ -76,10 +83,6 @@ describe("Testa da camada controllers store", function () {
     
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns();
-    
-    sinon
-      .stub(productsServices, "productsId")
-      .resolves({ message: "Product not found" });
     
     await validatesProductExists(req, res);
 
@@ -162,9 +165,13 @@ describe("Testa da camada controllers store", function () {
 describe("Testa as rotas controllers store", function () { 
   it("router /products allProducts", async function () {
 
-    const response = await chai.request(app).get("/products");
-    
-    expect(response.status).to.be.equal(200);
+    const responsePost = await chai.request(app).post("/products");
+
+    expect(responsePost.status).to.be.equal(400);
+
+    const responsePut = await chai.request(app).put("/products");
+
+    expect(responsePut.status).to.be.equal(404);
 
   });
 });
