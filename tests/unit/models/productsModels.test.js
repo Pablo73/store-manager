@@ -15,6 +15,14 @@ describe("Testes da camada model end point products", function () {
 
     expect(result).to.be.deep.equal(products);
   });
+
+  // it("Verificar o error na função allProduct ", async function () {
+  //   sinon.stub(connection, "execute").resolves('error');
+
+  //   const result = await productModel.allProduct();
+
+  //   expect(result).to.be.deep.equal(`Problem making request to database`);
+  // });
   
   it("Listar todos os produtos por id", async function () {
     sinon.stub(connection, "execute").resolves([[products[0]]]);

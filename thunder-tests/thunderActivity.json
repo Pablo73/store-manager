@@ -8,14 +8,9 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2023-03-21T18:30:05.060Z",
-    "modified": "2023-03-23T17:23:25.707Z",
+    "modified": "2023-03-29T16:27:10.177Z",
     "headers": [],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"name\": \"ufgsdfgs\"\n}\n",
-      "form": []
-    },
     "tests": []
   },
   {
