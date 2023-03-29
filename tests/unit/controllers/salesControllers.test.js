@@ -16,6 +16,7 @@ const {
   updateNewSales,
   bodyNewSales,
   allSales,
+  updateSales,
 } = require("./mocks.controllers/mocks.controllers");
 
 const {
@@ -127,21 +128,59 @@ it("test função allSalesControllersId com validação", async function () {
 });
 
   
-  it("test função deleteSales", async function () {
-    sinon.stub(salesServices, "deleteSalesId").resolves(undefined);
+it("test função deleteSales", async function () {
+  sinon.stub(salesServices, "deleteSalesId").resolves(undefined);
+
+  const res = {};
+  const req = {
+    params: { id: 1 },
+    body: {},
+    query: {},
+  };
+
+  res.status = sinon.stub().returns(res);
+  res.json = sinon.stub().returns();
+
+  await salesControllers.deleteSales(req, res);
+
+  expect(res.status).to.have.been.calledWith(204);
+});
+  
+  it("test função updateSalesById", async function () {
+    sinon.stub(salesServices, "updateSalesId").resolves(updateNewSales);
 
     const res = {};
     const req = {
-      params: { id: 1 },
-      body: {},
+      params: {},
+      body: updateSales,
       query: {},
     };
 
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns();
 
-    await salesControllers.deleteSales(req, res);
+    await salesControllers.updateSalesById(req, res);
 
-    expect(res.status).to.have.been.calledWith(204);
+    expect(res.status).to.have.been.calledWith(200);
+     expect(res.json).to.have.been.calledWith(updateNewSales);
   });
+
+it("test função updateSalesById error", async function () {
+  sinon.stub(salesServices, "updateSalesId").resolves(null);
+
+  const res = {};
+  const req = {
+    params: {},
+    body: bodyNewSales,
+    query: {},
+  };
+
+  res.status = sinon.stub().returns(res);
+  res.json = sinon.stub().returns();
+
+  await salesControllers.updateSalesById(req, res);
+
+  expect(res.status).to.have.been.calledWith(404);
+  expect(res.json).to.have.been.calledWith({ message: 'Product not found' });
+});
 });

@@ -5,6 +5,7 @@ const {
   insertProducts,
   putProductsById,
   deleteProduct,
+  queryProduct,
 } = require('../products.controllers');
 
 const {
@@ -13,6 +14,8 @@ const {
 } = require('../../middlewares/validation');
 
 const router = express.Router();
+
+router.get('/search', queryProduct);
 
 router.get('/', getAllProducts);
 

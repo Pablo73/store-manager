@@ -160,6 +160,51 @@ describe("Testa da camada controllers Products", function () {
       name: "ProdutoX",
     });
    });
+  
+   it("putProductsById retorna status 200", async function () {
+     sinon.stub(productsServices, "updateProductsId").resolves({
+       id: 4,
+       name: "ProdutoX",
+     });
+
+     const res = {};
+     const req = {
+       params: { id: 4 },
+       body: { name: "ProductX" },
+       query: {},
+     };
+
+     res.status = sinon.stub().returns(res);
+     res.json = sinon.stub().returns();
+
+
+     await productControllers.putProductsById(req, res);
+
+     expect(res.status).to.have.been.calledWith(200);
+     expect(res.json).to.have.been.calledWith({
+       id: 4,
+       name: "ProdutoX",
+     });
+   });
+  
+   it("deleteProduct retorna status 200", async function () {
+     sinon.stub(productsServices, "deleteProductId").resolves(undefined);
+
+     const res = {};
+     const req = {
+       params: { id: 4 },
+       body: {},
+       query: {},
+     };
+
+     res.status = sinon.stub().returns(res);
+     res.json = sinon.stub().returns();
+
+     await productControllers.deleteProduct(req, res);
+
+     expect(res.status).to.have.been.calledWith(204);
+   
+   });
 });
 
 describe("Testa as rotas controllers store", function () { 
